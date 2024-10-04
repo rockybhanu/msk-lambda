@@ -20,6 +20,8 @@ def lambda_handler(event, context):
         sasl_mechanism="AWS_MSK_IAM",
         sasl_plain_username=lambda: boto3.Session().get_credentials().access_key,
         sasl_plain_password=lambda: boto3.Session().get_credentials().secret_key,
+        metadata_max_age_ms=120000,  # Increase metadata fetch timeout to 120 seconds
+        request_timeout_ms=120000,   # Increase request timeout to 120 seconds
     )
 
     # Send the incoming Lambda event (as a JSON payload) to the Kafka topic

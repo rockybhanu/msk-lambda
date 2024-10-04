@@ -14,7 +14,7 @@ resource "aws_iam_role" "lambda_msk_role" {
   })
 }
 
-# Attach Policy for Lambda to access MSK using IAM
+# Attach Policy for Lambda to access MSK using IAM and manage VPC Network Interfaces
 resource "aws_iam_role_policy" "lambda_msk_policy" {
   role = aws_iam_role.lambda_msk_role.id
 
@@ -30,7 +30,17 @@ resource "aws_iam_role_policy" "lambda_msk_policy" {
           "kafka-cluster:AlterClusterMetrics"
         ],
         Resource = "*"
+      },
+      {
+        Effect = "Allow",
+        Action = [
+          "ec2:CreateNetworkInterface",
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:DeleteNetworkInterface"
+        ],
+        Resource = "*"
       }
     ]
   })
 }
+
