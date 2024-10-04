@@ -1,5 +1,6 @@
 import os
 import json
+import boto3
 from kafka import KafkaProducer
 from kafka.errors import KafkaError
 
@@ -7,14 +8,14 @@ from kafka.errors import KafkaError
 def lambda_handler(event, context):
     # Get MSK brokers from environment variables
     msk_brokers = os.environ["MSK_BROKERS"]
-    topic = "test_topic"  # Hardcoded topic name
+    topic = "data_topic"
 
     # Split the MSK brokers string into individual brokers
     brokers_list = msk_brokers.split(',')
 
     # Create an MSK Producer using IAM authentication
     producer = KafkaProducer(
-        bootstrap_servers=brokers_list,  # Pass the list of brokers
+        bootstrap_servers=brokers_list,
         security_protocol="SASL_SSL",
         sasl_mechanism="AWS_MSK_IAM",
         sasl_plain_username=lambda: boto3.Session().get_credentials().access_key,
