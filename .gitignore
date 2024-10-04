@@ -1,0 +1,7 @@
+.terraform/
+lambda_function/lambda.zip
+lambda_function/kafka
+lambda_function/kafka_python_ng-2.2.3.dist-info
+.terraform.lock.hcl
+terraform.tfstate.backup
+terraform.tfstate
