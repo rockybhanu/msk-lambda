@@ -21,4 +21,8 @@ resource "aws_msk_cluster" "msk_cluster" {
       iam = true # Enable IAM access control
     }
   }
+  configuration_info {
+    arn      = aws_msk_configuration.custom_config.arn
+    revision = aws_msk_configuration.custom_config.latest_revision
+  }
 }

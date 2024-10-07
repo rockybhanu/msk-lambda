@@ -26,8 +26,25 @@ resource "aws_iam_role_policy" "lambda_msk_policy" {
         Action = [
           "kafka-cluster:Connect",
           "kafka-cluster:DescribeCluster",
+          "kafka-cluster:DescribeClusterV2",
+          "kafka-cluster:GetBootstrapBrokers",
           "kafka-cluster:AlterCluster",
-          "kafka-cluster:AlterClusterMetrics"
+          "kafka-cluster:CreateCluster",
+          "kafka-cluster:DescribeTopic",
+          "kafka-cluster:CreateTopic",
+          "kafka-cluster:DeleteTopic",
+          "kafka-cluster:WriteData",
+          "kafka-cluster:ReadData",
+          "kafka-cluster:AlterTopic",
+          "kafka-cluster:DescribeGroup",
+          "kafka-cluster:AlterGroup",
+          "kafka-cluster:ListTopics",
+          "kafka-cluster:ListClusters",
+          "kafka-cluster:ListGroups",
+          "kafka-cluster:DescribeNode",
+          "kafka-cluster:AlterCluster",
+          "kafka-cluster:DescribeConfiguration",
+          "kafka-cluster:DescribeConfigurationRevision"
         ],
         Resource = "*"
       },
